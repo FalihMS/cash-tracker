@@ -48,11 +48,11 @@ export default function NewTransactionForm() {
         onSubmit: async ({ value }) => {
             toast.success("Transaction saved", {
                 description: (
-                    <pre className="bg-gray-100 text-code-foreground mt-2 mr-2 w-[320px] overflow-x-auto rounded-md p-4">
+                    <pre className="text-code-foreground mt-2 w-[320px] overflow-x-auto rounded-md">
                         <code>{JSON.stringify(value, null, 2)}</code>
                     </pre>
                 ),
-                position: "bottom-right",
+                position: "top-right",
             })
         },
         onSubmitInvalid: ({ formApi }) => {
@@ -72,7 +72,7 @@ export default function NewTransactionForm() {
                         ))}
                     </ul>
                 ),
-                position: "bottom-right",
+                position: "top-right",
             })
             return
         },
