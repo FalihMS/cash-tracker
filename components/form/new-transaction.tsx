@@ -33,7 +33,7 @@ export default function NewTransactionForm() {
     const form = useAppForm({
         defaultValues: {
             date: getTodayISOString(),
-            type: "",
+            type: typeOptions[0].value,
             amount: 0,
             category: "",
             notes: "",
