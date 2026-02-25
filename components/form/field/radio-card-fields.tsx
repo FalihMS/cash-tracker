@@ -16,11 +16,11 @@ export default function RadioCardField({
     }[]
 }) {
     const field = useFieldContext<string>()
+    
     return (
         <FieldSet className="w-full">
             <FieldLegend variant="label">{ label }</FieldLegend>
             <RadioGroup  
-                defaultValue={options[0].value}
                 value={field.state.value}
                 onValueChange={(v) => {
                     field.handleChange(v)
