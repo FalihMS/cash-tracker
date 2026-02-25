@@ -1,4 +1,3 @@
-"use client"
 
 import { AppSidebar } from "@/components/app-sidebar"
 import NewTransactionForm from "@/components/form/new-transaction"
