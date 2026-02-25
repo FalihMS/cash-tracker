@@ -16,6 +16,7 @@ export default function RadioCardField({
     }[]
 }) {
     const field = useFieldContext<string>()
+    const column = col ? col : 2
     
     return (
         <FieldSet className="w-full">
@@ -25,7 +26,7 @@ export default function RadioCardField({
                 onValueChange={(v) => {
                     field.handleChange(v)
                 }} 
-                className={`grid grid-cols-${col ? col : 2}`}
+                className={`grid grid-cols-${column}`}
                 >
                 {
                     options.map(option => (
