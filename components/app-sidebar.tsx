@@ -64,28 +64,30 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarGroup>
           <SidebarGroupContent className="flex flex-col gap-2">
             <SidebarMenu>
-              <SidebarMenuItem className="flex items-center gap-2">
-                <SidebarMenuButton
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
+              <SidebarMenuItem className="grid grid-cols-3 gap-2">
+                <Button
                   asChild
+                  className="col-span-2"
                 >
                   <a href="new">
                     <CirclePlusIcon className="ml-0.5" />
-                    <span>Quick New</span>
+                    <span>New Transaction</span>
                   </a>
-                </SidebarMenuButton>
+                </Button>
                 <Button
-                  size="icon"
-                  className="size-8 group-data-[collapsible=icon]:opacity-0"
+                  asChild
                   variant="outline"
                 >
-                  <BotIcon />
-                  <span className="sr-only">Inbox</span>
+                  <a href="bot">
+
+                    <BotIcon />
+                    <span>Bot</span>
+                  </a>
                 </Button>
               </SidebarMenuItem>
             </SidebarMenu>
             <SidebarMenu>
-              { data.navMain.map((item) => (
+              {data.navMain.map((item) => (
                 <SidebarMenuItem key={item.title} className="my-1">
                   <SidebarMenuButton>
                     {item.icon && <item.icon />}
