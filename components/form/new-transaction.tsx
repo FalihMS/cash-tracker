@@ -29,6 +29,7 @@ const categoryOptions: { label: string; value: string }[] = [
   { label: "Entertainment & Leisure", value: "entertainment_leisure" },
   { label: "Savings & Investments", value: "savings_investments" },
 ];
+
 export default function NewTransactionForm() {
     const form = useAppForm({
         defaultValues: {
@@ -79,50 +80,46 @@ export default function NewTransactionForm() {
     })
 
     return (
-        <div className="w-full mt-2 px-4 md:px-8">
-            <form
-                className="grid lg:grid-cols-2"
-                id="transaction-form"
-                onSubmit={(e) => {
-                    e.preventDefault()
-                    form.handleSubmit()
-                }}
-            >
-                <FieldGroup className="mb-5 gap-4">
-                    <form.AppField
-                        name="date"
-                        children={(field) => <field.DateField label={"Transaction Date"} />}
-                    />
+        <form.AppForm>
+            <div className="w-full mt-2 px-4 md:px-8">
+                <form
+                    className="grid lg:grid-cols-2"
+                    id="transaction-form"
+                    onSubmit={(e) => {
+                        e.preventDefault()
+                        form.handleSubmit()
+                    }}
+                >
+                    <FieldGroup className="mb-5 gap-4">
+                        <form.AppField
+                            name="date"
+                            children={(field) => <field.DateField label={"Transaction Date"} />}
+                        />
 
-                    <form.AppField 
-                        name="type" 
-                        children={(field) => <field.RadioCardField label={"Select Type"} options={typeOptions} />} 
-                    />
+                        <form.AppField 
+                            name="type" 
+                            children={(field) => <field.RadioCardField label={"Select Type"} options={typeOptions} />} 
+                        />
 
-                    <form.AppField
-                        name="amount"
-                        children={(field) => <field.TextNumberField label="Amount" />}
-                    />
+                        <form.AppField
+                            name="amount"
+                            children={(field) => <field.TextNumberField label="Amount" />}
+                        />
 
-                    <form.AppField
-                        name="category"
-                        children={(field) => <field.SelectField label={"Category"} options={categoryOptions} />}
-                    />
+                        <form.AppField
+                            name="category"
+                            children={(field) => <field.SelectField label={"Category"} options={categoryOptions} />}
+                        />
 
-                    <form.AppField
-                        name="notes"
-                        children={(field) => <field.TextareaField label="Notes" />}
-                    />
-                </FieldGroup>
-            </form>
-            <form.Subscribe selector={(s) => s.canSubmit}>
-                {(canSubmit) => (
-                    <Button type="submit" form="transaction-form" disabled={!canSubmit}>
-                        Save Transaction
-                    </Button>
-                )}
-            </form.Subscribe>
-        </div>
+                        <form.AppField
+                            name="notes"
+                            children={(field) => <field.TextareaField label="Notes" />}
+                        />
+                    </FieldGroup>
+                </form>
+                <form.SubmitButtonField label="Save" />
+            </div>
+        </form.AppForm>
     )
 }
 
