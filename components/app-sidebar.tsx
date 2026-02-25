@@ -51,7 +51,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
-              <a href="#">
+              <a href="dashboard">
                 <PiggyBankIcon className="!size-5" />
                 <span className="text-base font-semibold">Cash Tracker</span>
               </a>
@@ -67,9 +67,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <SidebarMenuItem className="flex items-center gap-2">
                 <SidebarMenuButton
                   className="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
+                  asChild
                 >
-                  <CirclePlusIcon className="ml-0.5" />
-                  <span>Quick New</span>
+                  <a href="new">
+                    <CirclePlusIcon className="ml-0.5" />
+                    <span>Quick New</span>
+                  </a>
                 </SidebarMenuButton>
                 <Button
                   size="icon"
