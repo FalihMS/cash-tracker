@@ -2,18 +2,20 @@ import { Button } from "@/components/ui/button";
 import { useFormContext } from "@/hooks/form";
 
 export default function SubmitButtonField({
+    form,
     label,
 }: {
+    form: string,
     label: string,
 }) {
-    const form = useFormContext()
+    const formContext = useFormContext()
     return (
-        <form.Subscribe selector={(s) => s.canSubmit}>
+        <formContext.Subscribe selector={(s) => s.canSubmit}>
             {(canSubmit) => (
-                <Button type="submit" form="transaction-form" disabled={!canSubmit}>
+                <Button type="submit" form={form} disabled={!canSubmit}>
                    { label }
                 </Button>
             )}
-        </form.Subscribe>
+        </formContext.Subscribe>
     )
 }
