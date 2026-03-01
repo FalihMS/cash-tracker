@@ -81,9 +81,9 @@ export default function NewTransactionForm() {
 
     return (
         <form.AppForm>
-            <div className="w-full mt-2 px-4 md:px-8">
+            <div className="w-full mt-2 lg:mt-10 px-4 md:px-8">
                 <form
-                    className="grid lg:grid-cols-2"
+                    className="grid max-w-xl w-full mx-auto"
                     id="transaction-form"
                     onSubmit={(e) => {
                         e.preventDefault()
@@ -100,24 +100,24 @@ export default function NewTransactionForm() {
                             name="type" 
                             children={(field) => <field.RadioCardField label={"Select Type"} options={typeOptions} />} 
                         />
-
-                        <form.AppField
-                            name="amount"
-                            children={(field) => <field.TextNumberField label="Amount" />}
-                        />
-
                         <form.AppField
                             name="category"
                             children={(field) => <field.SelectField label={"Category"} options={categoryOptions} />}
                         />
-
+                        <form.AppField
+                            name="amount"
+                            children={(field) => <field.TextNumberField label="Amount" />}
+                        />
                         <form.AppField
                             name="notes"
                             children={(field) => <field.TextareaField label="Notes" />}
                         />
+
+
                     </FieldGroup>
+                    <form.SubmitButtonField form={"transaction-form"} label="Save" />
                 </form>
-                <form.SubmitButtonField label="Save" />
+
             </div>
         </form.AppForm>
     )
