@@ -1,10 +1,13 @@
 import { AppSidebar } from "@/components/app-sidebar"
+import { ChartBarInteractive } from "@/components/chart/expense"
+import { TableDemo } from "@/components/table/recent-transaction"
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
 } from "@/components/ui/breadcrumb"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import {
   SidebarInset,
@@ -37,14 +40,33 @@ export default function Page() {
             </BreadcrumbList>
           </Breadcrumb>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4">
-          {Array.from({ length: 24 }).map((_, index) => (
-            <div
-              key={index}
-              className="bg-muted/50 aspect-video h-12 w-full rounded-lg"
-            />
-          ))}
+        <div className="w-full max-w-3xl pt-4 p-2 lg:mt-10 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <Card>
+            <CardContent className="space-y-3">
+              <CardDescription>
+                Total Balance
+              </CardDescription>
+              <CardTitle className="text-2xl">
+                1.000.000
+              </CardTitle>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="space-y-3">
+              <CardDescription>
+                Total Expense
+              </CardDescription>
+              <CardTitle className="text-2xl">
+                10.000.000
+              </CardTitle>
+            </CardContent>
+          </Card>
+          <ChartBarInteractive />
+          <TableDemo />
+
+
         </div>
+
       </SidebarInset>
     </SidebarProvider>
   )
