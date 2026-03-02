@@ -113,7 +113,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           onClick={async () => {
             const supabase = createClient()
             const { error } = await supabase.auth.signOut()
-            navigate.push("/dashboard");
+            navigate.push("/");
           }}
         >
           Sign Out
