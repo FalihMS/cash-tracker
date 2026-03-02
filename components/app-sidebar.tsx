@@ -5,6 +5,7 @@ import * as React from "react"
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarHeader,
@@ -15,6 +16,8 @@ import {
 import { BarChart2Icon, BotIcon, CirclePlusIcon, ListIcon, PiggyBankIcon, TagsIcon, WalletIcon } from "lucide-react"
 import { Button } from "./ui/button"
 import { DevelopmentDialog } from "./dialog/development-dialog"
+import { createClient } from "@/lib/supabase/client"
+import { useRouter } from "next/navigation"
 
 // This is sample data.
 const data = {
@@ -43,6 +46,8 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+    const navigate = useRouter(); // Hook from your routing library
+  
   return (
     <Sidebar {...props}>
       <SidebarHeader className="h-16 flex flex-col justify-center">
@@ -102,6 +107,18 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <Button
+          type="button"
+          onClick={async () => {
+            const supabase = createClient()
+            const { error } = await supabase.auth.signOut()
+            navigate.push("/dashboard");
+          }}
+        >
+          Sign Out
+        </Button>
+      </SidebarFooter>
     </Sidebar>
   )
 }

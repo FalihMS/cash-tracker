@@ -123,7 +123,7 @@ export default function NewTransactionForm() {
     )
 }
 
-function getErrorForm(errors: Record<string, StandardSchemaV1Issue[]>) {
+export function getErrorForm(errors: Record<string, StandardSchemaV1Issue[]>) {
     const messages: string[] = []
 
     for (const key in errors) {
