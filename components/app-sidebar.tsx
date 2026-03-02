@@ -54,7 +54,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             >
               <a href="dashboard">
                 <PiggyBankIcon className="!size-5" />
-                <span className="text-base font-semibold">Cash Tracker</span>
+                <span className="text-sm text-base font-semibold">Cash Tracker Application</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
