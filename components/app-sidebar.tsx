@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/sidebar"
 import { BarChart2Icon, BotIcon, CirclePlusIcon, ListIcon, PiggyBankIcon, TagsIcon, WalletIcon } from "lucide-react"
 import { Button } from "./ui/button"
+import { DevelopmentDialog } from "./dialog/development-dialog"
 
 // This is sample data.
 const data = {
@@ -74,16 +75,18 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     <span>New Transaction</span>
                   </a>
                 </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                >
-                  <a href="bot">
+                <DevelopmentDialog>
+                  <Button
+                    asChild
+                    variant="outline"
+                  >
+                    <a href="#">
 
-                    <BotIcon />
-                    <span>Bot</span>
-                  </a>
-                </Button>
+                      <BotIcon />
+                      <span>Bot</span>
+                    </a>
+                  </Button>
+                </DevelopmentDialog>
               </SidebarMenuItem>
             </SidebarMenu>
             <SidebarMenu>
