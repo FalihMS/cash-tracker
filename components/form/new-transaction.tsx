@@ -6,6 +6,7 @@ import { revalidateLogic, StandardSchemaV1Issue } from "@tanstack/react-form"
 import { toast } from "sonner"
 import z from "zod"
 import { useAppForm } from "@/hooks/form"
+import { createClient } from "@/lib/supabase/client"
 
 const formSchema = z.object({
     date: z.string().min(1, "Date is required."),
@@ -21,13 +22,12 @@ const typeOptions: { label: string, value: string }[]= [
 ]
 
 const categoryOptions: { label: string; value: string }[] = [
-  { label: "Housing", value: "housing" },
-  { label: "Food & Groceries", value: "food_groceries" },
-  { label: "Transportation", value: "transportation" },
-  { label: "Utilities", value: "utilities" },
-  { label: "Healthcare", value: "healthcare" },
-  { label: "Entertainment & Leisure", value: "entertainment_leisure" },
-  { label: "Savings & Investments", value: "savings_investments" },
+  { label: "Housing", value: "Housing" },
+  { label: "Food & Groceries", value: "Food & Groceries" },
+  { label: "Transportation", value: "Transportation" },
+  { label: "Utilities", value: "Utilities" },
+  { label: "Healthcare", value: "Healthcare" },
+  { label: "Entertainment", value: "Entertainment" },
 ];
 
 export default function NewTransactionForm() {
@@ -46,16 +46,36 @@ export default function NewTransactionForm() {
             mode: 'submit',
             modeAfterSubmission: 'change',
         }),
-        onSubmit: async ({ value }) => {
-            toast.success("Transaction saved", {
-                description: (
-                    <pre className="text-code-foreground mt-2 w-[320px] overflow-x-auto rounded-md">
-                        <code>{JSON.stringify(value, null, 2)}</code>
-                    </pre>
-                ),
-                position: "top-right",
-            })
-        },
+        onSubmit: async ({ value, formApi }) => {
+              const supabase = createClient()
+              // 1. Wrap the actual logic in a promise for the toast to track
+            const user_id = (await supabase.auth.getUser()).data.user?.id
+            const loginPromise = async () => {
+                const { data, error } = await supabase.from('transactions').insert({
+                    transaction_date: value.date,
+                    type: value.type,
+                    amount: value.amount,
+                    category: value.category,
+                    note: value.notes,
+                    user_id: user_id,
+                }).select()
+
+                if (error) {
+                  // Throw to trigger the 'error' state in toast.promise
+                  throw new Error(error.message)
+                }
+        
+                return data // Success!
+              }
+        
+              // 3. Execute the toast and the logic together
+              toast.promise(loginPromise(), {
+                loading: "Recording Transactions..",
+                success: "Transaction Recorded!",
+                error: (err) => err.message || "Failed to Record Transaction",
+              })
+        
+            },
         onSubmitInvalid: ({ formApi }) => {
             console.log(formApi.state.errors)
             console.log(formApi.state.isValid)
@@ -81,7 +101,7 @@ export default function NewTransactionForm() {
 
     return (
         <form.AppForm>
-            <div className="w-full mt-2 lg:mt-10 px-4 md:px-8">
+            <div className="w-full mt-2 lg:mt-4 px-4 md:px-8">
                 <form
                     className="grid max-w-xl w-full mx-auto"
                     id="transaction-form"

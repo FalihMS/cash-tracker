@@ -87,7 +87,7 @@ export default async function Page() {
             </BreadcrumbList>
           </Breadcrumb>
         </header>
-        <div className="w-full max-w-3xl pt-4 p-2 lg:mt-10 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="w-full max-w-3xl pt-4 p-2 lg:mt-4 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-4">
           <Card>
             <CardContent className="space-y-3">
               <CardDescription>
