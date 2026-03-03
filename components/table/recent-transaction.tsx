@@ -9,71 +9,19 @@ import {
 import { Card, CardAction, CardContent, CardHeader, CardTitle } from "../ui/card"
 import { Button } from "../ui/button"
 import { DevelopmentDialog } from "../dialog/development-dialog"
+import { formatCurrencyDisplay } from "@/lib/utils"
 
-const invoices = [
-    {
-        invoice: "INV001",
-        paymentStatus: "Paid",
-        totalAmount: "$250.00",
-        paymentMethod: "Credit Card",
-    },
-    {
-        invoice: "INV002",
-        paymentStatus: "Pending",
-        totalAmount: "$150.00",
-        paymentMethod: "PayPal",
-    },
-    {
-        invoice: "INV003",
-        paymentStatus: "Unpaid",
-        totalAmount: "$350.00",
-        paymentMethod: "Bank Transfer",
-    },
-    {
-        invoice: "INV004",
-        paymentStatus: "Paid",
-        totalAmount: "$450.00",
-        paymentMethod: "Credit Card",
-    },
-    {
-        invoice: "INV005",
-        paymentStatus: "Paid",
-        totalAmount: "$550.00",
-        paymentMethod: "PayPal",
-    },
-    {
-        invoice: "INV006",
-        paymentStatus: "Pending",
-        totalAmount: "$200.00",
-        paymentMethod: "Bank Transfer",
-    },
-    {
-        invoice: "INV007",
-        paymentStatus: "Unpaid",
-        totalAmount: "$300.00",
-        paymentMethod: "Credit Card",
-    },
-    {
-        invoice: "INV008",
-        paymentStatus: "Paid",
-        totalAmount: "$550.00",
-        paymentMethod: "PayPal",
-    },
-    {
-        invoice: "INV009",
-        paymentStatus: "Pending",
-        totalAmount: "$200.00",
-        paymentMethod: "Bank Transfer",
-    },
-    {
-        invoice: "INV010",
-        paymentStatus: "Unpaid",
-        totalAmount: "$300.00",
-        paymentMethod: "Credit Card",
-    },
-]
-
-export function TableDemo() {
+export function RecentTransactionTable({
+    data
+}: {
+    data: {
+        transaction_date: string
+        type: string
+        category: string
+        amount: number
+        note: string
+    }[]
+}) {
     return (
         <Card className="lg:col-span-2">
             <CardHeader>
@@ -88,19 +36,21 @@ export function TableDemo() {
                 <Table>
                     <TableHeader>
                         <TableRow>
-                            <TableHead className="w-[100px]">Invoice</TableHead>
-                            <TableHead>Status</TableHead>
+                            <TableHead className="w-[75px]">Date</TableHead>
                             <TableHead>Method</TableHead>
                             <TableHead className="text-right">Amount</TableHead>
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {invoices.map((invoice) => (
-                            <TableRow key={invoice.invoice}>
-                                <TableCell className="font-medium">{invoice.invoice}</TableCell>
-                                <TableCell>{invoice.paymentStatus}</TableCell>
-                                <TableCell>{invoice.paymentMethod}</TableCell>
-                                <TableCell className="text-right">{invoice.totalAmount}</TableCell>
+                        {data.map((transaction, id) => (
+                            <TableRow key={id}>
+                                <TableCell className="font-medium">{transaction.transaction_date}</TableCell>
+                                <TableCell>{transaction.category} <span className="hidden md:inline-block font-light text-muted-foreground"> - {transaction.note}</span></TableCell>
+                                <TableCell className="text-right">
+                                    {
+                                        transaction.type === 'income' ? <span className="text-green-500">IDR {formatCurrencyDisplay(transaction.amount)}</span> : <span className="text-red-500">IDR {formatCurrencyDisplay(transaction.amount)}</span>
+                                    }
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

@@ -1,6 +1,6 @@
 import { AppSidebar } from "@/components/app-sidebar"
 import { ChartBarInteractive } from "@/components/chart/expense"
-import { TableDemo } from "@/components/table/recent-transaction"
+import { RecentTransactionTable } from "@/components/table/recent-transaction"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -14,8 +14,55 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import { createClient } from "@/lib/supabase/server"
 
-export default function Page() {
+
+// const transactions = [
+//   {
+//     "transaction_date": "03-01",
+//     "category": "Groceries",
+//     "amount": 85420,
+//     "note": "Belanja Bulanan",
+//   },
+//   {
+//     "transaction_date": "03-01",
+//     "category": "Utilities",
+//     "amount": 120000,
+//     "note": "Bayar Listrik bulan Juli",
+//   },
+//   {
+//     "transaction_date": "03-02",
+//     "category": "Dining Out",
+//     "amount": 42150,
+//     "note": "Makan Gyukaku",
+//   },
+//   {
+//     "transaction_date": "03-02",
+//     "category": "Transportation",
+//     "amount": 35000,
+//     "note": "Berangkat & pulang kantor",
+//   },
+//   {
+//     "transaction_date": "03-03",
+//     "category": "Entertainment",
+//     "amount": 15990,
+//     "note": "Langganan netflix & spotify",
+//   }
+// ]
+export default async function Page() {
+
+  const supabase = await createClient()
+  const { data, error } = await supabase.from("transactions").select()
+
+  const transactions: { transaction_date: string; category: string; type: string, amount: number; note: string }[] = []
+  data?.map((item) => transactions.push({
+    transaction_date: item.transaction_date.substring(5, item.transaction_date.len),
+    category: item.category,
+    type: item.type,
+    amount: item.amount,
+    note: item.note
+  }))
+
   return (
     <SidebarProvider
       style={
@@ -62,9 +109,7 @@ export default function Page() {
             </CardContent>
           </Card>
           <ChartBarInteractive />
-          <TableDemo />
-
-
+          <RecentTransactionTable data={transactions} />
         </div>
 
       </SidebarInset>
