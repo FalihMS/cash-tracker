@@ -20,3 +20,6 @@ export function getTodayISOString() {
   const local = new Date(d.getTime() - offset * 60000)
   return local.toISOString().slice(0, 10)
 }
+
+export const startOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+export const startOfNextMonth = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1)

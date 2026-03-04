@@ -18,6 +18,7 @@ import { Button } from "./ui/button"
 import { DevelopmentDialog } from "./dialog/development-dialog"
 import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
+import { NavUser } from "./nav-user"
 
 // This is sample data.
 const data = {
@@ -108,16 +109,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <Button
-          type="button"
-          onClick={async () => {
-            const supabase = createClient()
-            const { error } = await supabase.auth.signOut()
-            navigate.push("/");
-          }}
-        >
-          Sign Out
-        </Button>
+        <NavUser user={{
+          name: "User",
+          email: "falih72ms@gmail.com",
+          avatar: ""
+        }}  />
       </SidebarFooter>
     </Sidebar>
   )

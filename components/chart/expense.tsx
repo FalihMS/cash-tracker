@@ -115,7 +115,7 @@ const chartData = [
 
 const chartConfig = {
   views: {
-    label: "Page Views",
+    label: "Amount",
   },
   desktop: {
     label: "Desktop",
@@ -127,12 +127,16 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-export function ChartBarInteractive() {
+export function ChartBarInteractive({
+  expense,
+}:{
+  expense: {
+    total_sum:number,
+    date: string,
+  }[]
+}) {
   const [activeChart, setActiveChart] =
     React.useState<keyof typeof chartConfig>("desktop")
-
-  
-
   return (
     <Card className="lg:col-span-2">
       <CardHeader>
@@ -145,7 +149,7 @@ export function ChartBarInteractive() {
         >
           <BarChart
             accessibilityLayer
-            data={chartData.slice(0,30)}
+            data={expense}
             margin={{
               left: 12,
               right: 12,
@@ -153,7 +157,7 @@ export function ChartBarInteractive() {
           >
             <CartesianGrid vertical={false} />
             <XAxis
-              dataKey="date"
+              dataKey="transaction_date"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
@@ -170,7 +174,7 @@ export function ChartBarInteractive() {
             <ChartTooltip
               content={
                 <ChartTooltipContent
-                  className="w-[150px]"
+                  className="w-[165px]"
                   nameKey="views"
                   labelFormatter={(value) => {
                     return new Date(value).toLocaleDateString("en-US", {
@@ -182,7 +186,7 @@ export function ChartBarInteractive() {
                 />
               }
             />
-            <Bar dataKey={activeChart} fill={`black`} />
+            <Bar dataKey={'total_sum'} fill={`black`} />
           </BarChart>
         </ChartContainer>
       </CardContent>
