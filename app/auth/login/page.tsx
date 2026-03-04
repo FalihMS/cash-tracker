@@ -79,7 +79,7 @@ export function LoginForm({
           throw new Error(error.message)
         }
 
-        navigate.push("/dashboard");
+        navigate.push("/main/dashboard");
         return data // Success!
       }
 
