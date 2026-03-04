@@ -21,13 +21,22 @@ const typeOptions: { label: string, value: string }[]= [
     { label: "Income", value: "income" },
 ]
 
-const categoryOptions: { label: string; value: string }[] = [
+const expenseCategoryOptions: { label: string; value: string }[] = [
   { label: "Housing", value: "Housing" },
   { label: "Food & Groceries", value: "Food & Groceries" },
   { label: "Transportation", value: "Transportation" },
   { label: "Utilities", value: "Utilities" },
-  { label: "Healthcare", value: "Healthcare" },
   { label: "Entertainment", value: "Entertainment" },
+  { label: "Other Expense", value: "Other" },
+];
+
+const incomeCategoryOptions: { label: string; value: string }[] = [
+  { label: "Salary", value: "Salary" },
+  { label: "Freelance", value: "Freelance" },
+  { label: "Business", value: "Business" },
+  { label: "Investment Returns", value: "Investment Returns" },
+  { label: "Bonus", value: "Bonus" },
+  { label: "Other Income", value: "Other" },
 ];
 
 export default function NewTransactionForm() {
@@ -101,7 +110,7 @@ export default function NewTransactionForm() {
 
     return (
         <form.AppForm>
-            <div className="w-full mt-2 lg:mt-4 px-4 md:px-8">
+            <div className="w-full mt-2 lg:mt-4 px-4 md:px-8 col-span-2">
                 <form
                     className="grid max-w-xl w-full mx-auto"
                     id="transaction-form"
@@ -120,10 +129,21 @@ export default function NewTransactionForm() {
                             name="type" 
                             children={(field) => <field.RadioCardField label={"Select Type"} options={typeOptions} />} 
                         />
-                        <form.AppField
-                            name="category"
-                            children={(field) => <field.SelectField label={"Category"} options={categoryOptions} />}
-                        />
+                        <form.Subscribe
+                            selector={(state) => state.values.type}
+                        >
+                            {(type) => (
+                                <form.AppField
+                                    name="category"
+                                    children={(field) => (
+                                        <field.SelectField
+                                            label="Category"
+                                            options={type === "expense" ? expenseCategoryOptions : incomeCategoryOptions}
+                                        />
+                                    )}
+                                />
+                            )}
+                        </form.Subscribe>
                         <form.AppField
                             name="amount"
                             children={(field) => <field.TextNumberField label="Amount" />}

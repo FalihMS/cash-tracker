@@ -34,7 +34,7 @@ function SidebarQuickMenu() {
                     asChild
                     className="col-span-2"
                 >
-                    <a href="new">
+                    <a href="new-transaction">
                         <CirclePlusIcon className="ml-0.5" />
                         <span>New Transaction</span>
                     </a>
