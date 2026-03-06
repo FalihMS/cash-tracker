@@ -61,7 +61,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarMainContent data={data.main} />
       <SidebarFooterContent user={{
         name: "User",
-        email: "falih72ms@gmail.com",
+        email: "your-email@gmail.com",
         avatar: ""
       }} />
     </Sidebar>

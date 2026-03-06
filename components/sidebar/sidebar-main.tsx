@@ -44,7 +44,7 @@ function SidebarQuickMenu() {
                         asChild
                         variant="outline"
                     >
-                        <a href="#">
+                        <a href="bot-transaction">
 
                             <BotIcon />
                             <span>Bot</span>
