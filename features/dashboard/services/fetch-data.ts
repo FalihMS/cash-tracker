@@ -7,13 +7,13 @@ export async function fetchDashboardData(){
 
     const { data: balanceData, error: balanceError } = await supabase
         .from('balance')
-        .select('total:total_balance')
+        .select('total_balance')
         .eq('user_id', user_id)
         .single()
 
     const { data: totalExpenseData, error: totalExpenseError  } = await supabase
-        .from('total_expense')
-        .select('total:sum')
+        .from('monthly_expenses')
+        .select('total_expense')
         .eq('user_id', user_id).single()
 
     const { data: recentTransactionData, error: transactionError } = await supabase
@@ -27,11 +27,13 @@ export async function fetchDashboardData(){
             p_user_id: user_id
         })
 
-    if(transactionError || totalExpenseError || balanceError) throw Error('Failed to fetch data')
+    if(transactionError !== null) throw Error('Failed to fetch Transaction Data')
+    if(totalExpenseError !== null) throw Error(JSON.stringify(totalExpenseError))
+    if(balanceError !== null) throw Error('Failed to fetch Balance Data')
 
     return {
-         balanceData: balanceData.total, 
-         totalExpenseData: totalExpenseData.total,
+         balanceData: balanceData.total_balance, 
+         totalExpenseData: totalExpenseData.total_expense,
          recentTransactionData: recentTransactionData,
          transactionChartData: transactionChartData,
      }

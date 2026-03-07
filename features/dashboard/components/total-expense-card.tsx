@@ -4,9 +4,9 @@ import { formatCurrencyDisplay } from "@/lib/utils";
 
 export async function TotalExpenseCard({
     totalExpense
-}:{
+}: {
     totalExpense: number
-}){
+}) {
     return (
         <Card>
             <CardHeader>
@@ -20,9 +20,18 @@ export async function TotalExpenseCard({
                 </CardAction>
             </CardHeader>
             <CardContent className="-mt-3">
-                <CardTitle className="text-2xl">
-                    IDR {formatCurrencyDisplay(totalExpense)}
-                </CardTitle>
+                {
+                    totalExpense == 0 ? (
+                        <CardTitle className="text-2xl">
+                            IDR 0
+                        </CardTitle>
+                    ) : (
+                        <CardTitle className="text-2xl">
+                            IDR {formatCurrencyDisplay(totalExpense)}
+                        </CardTitle>
+                    )
+                }
+
             </CardContent>
         </Card>
     )

@@ -15,15 +15,25 @@ export async function BalanceCard({
             </CardHeader>
             <CardContent className="-mt-3">
                 {
-                    balance > 0 ? (
+                    balance == 0 && (
                         <CardTitle className="text-2xl">
+                            IDR 0
+                        </CardTitle>
+                    ) 
+                }
+                {
+                    balance > 0 && (
+                         <CardTitle className="text-2xl">
                             IDR {formatCurrencyDisplay(balance)}
                         </CardTitle>
-                    ) : (
+                    ) 
+                }
+                {
+                    balance < 0 && (
                         <CardTitle className="text-2xl text-red-500">
                             (IDR {formatCurrencyDisplay(balance * -1)})
                         </CardTitle>
-                    )
+                    ) 
                 }
             </CardContent>
         </Card>
