@@ -39,7 +39,6 @@ function SidebarQuickMenu() {
                         <span>New Transaction</span>
                     </a>
                 </Button>
-                <DevelopmentDialog>
                     <Button
                         asChild
                         variant="outline"
@@ -50,7 +49,6 @@ function SidebarQuickMenu() {
                             <span>Bot</span>
                         </a>
                     </Button>
-                </DevelopmentDialog>
             </SidebarMenuItem>
         </SidebarMenu>
     )

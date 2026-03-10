@@ -84,11 +84,10 @@ export default function BotTransactionForm() {
                     amount: data.amount,
                     type: data.type,
                     note:data.note,
-                    transaction_date: data.transaction_date
+                    transaction_date: data.transaction_date == null ? new Date().toISOString().split('T')[0] : data.transaction_date
                 }
                 
                 console.log(recognized)
-
                 setRecognizedTransactions([recognized])
 
             } catch (error) {

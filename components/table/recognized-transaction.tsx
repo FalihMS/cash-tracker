@@ -1,3 +1,5 @@
+'use client'
+
 import {
     Table,
     TableBody,
@@ -7,10 +9,12 @@ import {
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card"
 import { Button } from "../ui/button"
 import { DevelopmentDialog } from "../dialog/development-dialog"
-import { formatCurrencyDisplay } from "@/lib/utils"
+import { formatCurrencyDisplay, shorten } from "@/lib/utils"
 import { Eye } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 import { toast } from "sonner"
+import { useIsMobile } from "@/hooks/use-mobile"
+import { useRouter } from "next/navigation"
 
 export function RecognizedTransactionTable({
     data
@@ -23,6 +27,8 @@ export function RecognizedTransactionTable({
         note: string
     }[]
 }) {
+    const isMobile = useIsMobile()
+    const navigate = useRouter()
     return (
         <div className="w-full mt-2 lg:mt-4 px-4 md:px-8 col-span-2">
             <Card>
@@ -50,8 +56,8 @@ export function RecognizedTransactionTable({
                                             <TableCell className="align-middle">
                                                 <div className="flex flex-col">
                                                     <span>{transaction.category}</span>
-                                                    <span className="text-sm font-light text-muted-foreground">
-                                                        {transaction.note}
+                                                    <span className="sm:hidden text-sm font-light text-muted-foreground">
+                                                        {!isMobile ? transaction.note : shorten(transaction.note)}
                                                     </span>
                                                 </div>
                                             </TableCell>
@@ -92,7 +98,10 @@ export function RecognizedTransactionTable({
                     }
                 </CardContent>
                 <CardFooter>
-                    <Button className="w-full" onClick={() => saveRecognizedTransaction(data[0])}>
+                    <Button className="w-full" onClick={async () => {
+                        await saveRecognizedTransaction(data[0])
+                        navigate.push('/main/dashboard')
+                    }}>
                         Record All Transaction
                     </Button>
                 </CardFooter>
@@ -127,7 +136,7 @@ async function saveRecognizedTransaction(data: {
                 success: "Transaction saved!",
             }
         )
-        return result
+
     } catch (error) {
         toast.error("Failed to save transaction", {
             description: error instanceof Error ? error.message : "Unknown error"

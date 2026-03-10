@@ -61,10 +61,10 @@ function SidebarComponent({
 
 function LoadingDashboard(){
     return(
-        <div className="w-full h-full flex items-center justify-center">
-            <Card className="w-[400px] text-center flex flex-col items-center text-muted-foreground">
+        <div className="px-4 md:mx-0 w-full h-full flex items-center justify-center">
+            <Card className="w-[400px] text-center flex flex-col justify-center items-center text-muted-foreground">
                 <Loader2 className="animate-spin" />
-                <span>Fetching from Database</span>
+                <span>Loading...</span>
             </Card>
         </div>
     )

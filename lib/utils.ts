@@ -14,6 +14,15 @@ export function formatCurrencyValue(str: string) {
   return Number(str.replace(/\D/g, ""))
 }
 
+
+export function shorten(str: string) {
+  const strLen = str.length
+  
+  if(strLen < 20) return str
+
+  return str.substring(0, 24) + '...'
+}
+
 export function getTodayISOString() {
   const d = new Date()
   const offset = d.getTimezoneOffset()

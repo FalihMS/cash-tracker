@@ -1,16 +1,18 @@
+'use client'
+
 import {
     Table,
     TableBody,
     TableCell,
-    TableHead,
-    TableHeader,
     TableRow,
 } from "@/components/ui/table"
 import { Card, CardAction, CardContent, CardHeader, CardTitle } from "../ui/card"
 import { Button } from "../ui/button"
 import { DevelopmentDialog } from "../dialog/development-dialog"
-import { formatCurrencyDisplay } from "@/lib/utils"
-import { ChevronDownCircle, Edit, Eye } from "lucide-react"
+import { formatCurrencyDisplay, shorten } from "@/lib/utils"
+import { Eye } from "lucide-react"
+
+import { useIsMobile } from "@/hooks/use-mobile"
 
 export function RecentTransactionTable({
     data
@@ -23,6 +25,7 @@ export function RecentTransactionTable({
         note: string
     }[]
 }) {
+    const isMobile = useIsMobile()
     return (
         <Card className="lg:col-span-2">
             <CardHeader>
@@ -56,8 +59,8 @@ export function RecentTransactionTable({
                                         <TableCell className="align-middle">
                                             <div className="flex flex-col">
                                                 <span>{transaction.category}</span>
-                                                <span className="text-sm font-light text-muted-foreground">
-                                                    {transaction.note}
+                                                <span className="sm:hidden text-sm font-light text-muted-foreground">
+                                                    { !isMobile ? transaction.note : shorten(transaction.note) }
                                                 </span>
                                             </div>
                                         </TableCell>
