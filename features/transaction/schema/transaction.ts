@@ -7,4 +7,9 @@ export interface Transaction {
     user_id?: string
 }
 
+export interface TransactionTypeOptions {
+    label: string
+    value: string
+}
+
 export type transactionType = "income" | "expense"

@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💰 Cash Tracker - Project Documentation
 
-## Getting Started
+**Project Name:** Cash Tracker Application  
+**Tagline:** *"Track Better, Spend Smarter"*  
+**Type:** Personal Finance Management Web Application
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 📖 Overview
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Cash Tracker is a modern personal finance management application designed to help users track their income and expenses efficiently.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The application provides both **manual transaction entry** and **AI-powered transaction extraction**, allowing users to maintain accurate financial records with minimal effort.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The goal is to simplify personal finance tracking while providing clear insights into spending habits and financial health.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🎯 Purpose
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Cash Tracker aims to help users:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Record daily **income and expenses**
+- Automatically **extract financial transactions from text using AI**
+- Monitor **balance and spending trends**
+- Organize transactions using **categories**
+- Gain **clear financial insights** through visual dashboards
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ⚠️ Problem Statement
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Many individuals struggle with:
+
+- Tracking **daily expenses and income**
+- Understanding **spending patterns**
+- Manually **categorizing transactions**
+- Maintaining accurate **balance records**
+- Getting quick **financial insights**
+
+Cash Tracker solves these problems by providing:
+
+- An intuitive interface for recording transactions
+- AI-powered transaction extraction
+- Real-time balance calculations
+- Categorized transaction management
+- Visual financial insights
+
+---
+
+## 👥 Target Users
+
+### Individual Users
+People who want a simple way to track their personal finances.
+
+### Budget-Conscious Users
+Users who want better control over their spending habits.
+
+### Tech-Savvy Users
+Individuals who appreciate automation and AI-powered features.
+
+### Financial Planners
+Users planning budgets and monitoring financial health.
+
+---
+
+## ✨ Key Features
+
+- ✅ **Manual Transaction Entry**
+- ✅ **AI-Powered Transaction Extraction**
+- ✅ **Income & Expense Tracking**
+- ✅ **Real-Time Balance Calculation**
+- ✅ **Category-Based Organization**
+- ✅ **Visual Transaction History**
+- ✅ **Responsive Mobile-Friendly UI**
+
+---
+
+## 🧠 AI Capabilities
+
+Cash Tracker integrates **AI-powered transaction extraction** to convert natural language input into structured financial transactions.
+
+Example input:

@@ -30,3 +30,7 @@ export const transactionDefaultValue = {
   category: "",
   note: "",
 }
+
+export const botTransactionDefaultValue = {
+  note: "",
+}

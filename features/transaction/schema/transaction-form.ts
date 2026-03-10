@@ -9,3 +9,11 @@ export const transactionFormSchema = z.object({
 })
 
 export type TransactionFormValues = z.infer<typeof transactionFormSchema>
+
+
+export const BotTransactionFormSchema = z.object({
+    note: z.string(),
+})
+
+export type BotTransactionFormValues = z.infer<typeof transactionFormSchema>
+

@@ -14,6 +14,7 @@ import {
 } from "@/features/transaction/default/transaction-options"
 import { getErrorForm } from "@/lib/form/get-error-form"
 import { FieldGroup } from "@/components/ui/field"
+import PrintError from "@/components/error/handle-invalid-form"
 
 
 export default function NewTransactionForm() {
@@ -40,13 +41,7 @@ export default function NewTransactionForm() {
             const errMessage = getErrorForm(errors)
             console.log(errMessage)
             toast.error("Error Input", {
-                description: (
-                    <ul className="list-disc pl-4">
-                        {errMessage.map((err, i) => (
-                            <li key={i}>{err}</li>
-                        ))}
-                    </ul>
-                ),
+                description: (<PrintError errMessage={errMessage} />),
                 position: "top-right",
             })
         },
