@@ -17,10 +17,10 @@ import z from "zod";
 import { useAppForm } from "@/hooks/form";
 import { revalidateLogic } from "@tanstack/react-form";
 import { toast } from "sonner";
-import { getErrorForm } from "@/components/form/new-transaction";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { getErrorForm } from "@/lib/form/get-error-form";
 
 
 export default function Page() {
