@@ -27,7 +27,7 @@ export default function NewTransactionForm() {
             mode: 'submit',
             modeAfterSubmission: 'change',
         }),
-        onSubmit: async ({ value, formApi }) => {
+        onSubmit: async ({ value }) => {
             toast.promise(recordTransaction({ ...value }), {
                 loading: "Recording Transactions..",
                 success: "Transaction Recorded!",
@@ -63,40 +63,35 @@ export default function NewTransactionForm() {
                     }}
                 >
                     <FieldGroup className="mb-5 gap-4">
-                        <form.AppField
-                            name="transaction_date"
-                            children={(field) => <field.DateField label={"Transaction Date"} />}
-                        />
+                        <form.AppField name="transaction_date">
+                            {(field) => <field.DateField label={"Transaction Date"} />}
+                        </form.AppField>
 
-                        <form.AppField
-                            name="type"
-                            children={(field) => <field.RadioCardField label={"Select Type"} options={typeOptions} />}
-                        />
+                        <form.AppField name="type">
+                            {(field) => <field.RadioCardField label={"Select Type"} options={typeOptions} />}
+                        </form.AppField>
+
                         <form.Subscribe
                             selector={(state) => state.values.type}
                         >
                             {(type) => (
-                                <form.AppField
-                                    name="category"
-                                    children={(field) => (
+                                <form.AppField name="category" >
+                                    {(field) => (
                                         <field.SelectField
                                             label="Category"
                                             options={getCategoryOptions(type)}
                                         />
                                     )}
-                                />
+                                </form.AppField>
                             )}
                         </form.Subscribe>
-                        <form.AppField
-                            name="amount"
-                            children={(field) => <field.TextNumberField label="Amount" />}
-                        />
-                        <form.AppField
-                            name="note"
-                            children={(field) => <field.TextareaField label="Notes" />}
-                        />
 
-
+                        <form.AppField name="amount">
+                            {(field) => <field.TextNumberField label="Amount" />}
+                        </form.AppField>
+                        <form.AppField name="note">
+                            {(field) => <field.TextareaField label="Notes" />}
+                        </form.AppField>
                     </FieldGroup>
                     <form.SubmitButtonField form={"transaction-form"} label="Save" />
                 </form>

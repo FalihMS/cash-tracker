@@ -1,6 +1,5 @@
 'use client'
 
-import { cn } from "@/lib/utils"
 import {
     Card,
   CardContent,
@@ -73,13 +72,17 @@ export function LoginForm() {
               navigate.push("/main/dashboard")
 
               return data
-          } catch (error: any) {
+          } catch (error: unknown) {
               formApi.setFieldMeta("password", (prev) => ({
                   ...prev,
                   errorMap: { onSubmit: "Invalid email or password" },
               }))
 
+            if (error instanceof Error) {
               throw error
+            }
+
+            throw new Error("Login failed")
           }
       }
 

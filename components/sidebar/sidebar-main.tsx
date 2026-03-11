@@ -1,6 +1,5 @@
 import { CirclePlusIcon, BotIcon, LucideProps } from "lucide-react";
-import { DevelopmentDialog } from "../dialog/development-dialog";
-import { SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "../ui/sidebar";
+import { SidebarContent, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "../ui/sidebar";
 import { Button } from "../ui/button";
 import { ForwardRefExoticComponent } from "react";
 

@@ -4,7 +4,6 @@ import { useFieldContext } from "@/hooks/form";
 
 export default function RadioCardField({
     label,
-    col,
     options
 }: {
     label: string,

@@ -29,7 +29,7 @@ export default function BotTransactionForm() {
             mode: 'submit',
             modeAfterSubmission: 'change',
         }),
-        onSubmit: async ({ value, formApi }) => {
+        onSubmit: async ({ value }) => {
             setIsProcessing(true)
             try {
                 // Process notes to recognize transactions
@@ -80,10 +80,9 @@ export default function BotTransactionForm() {
                     onSubmit={form.handleSubmit}
                 >
                     <FieldGroup className="mb-5 gap-4">
-                        <form.AppField
-                            name="note"
-                            children={(field) => <field.TextareaField label="Explain the Transaction" />}
-                        />
+                        <form.AppField name="note">
+                            {(field) => <field.TextareaField label="Explain the Transaction" />}
+                        </form.AppField>
                     </FieldGroup>
                     <form.SubmitButtonField form={"transaction-form"} label="Submit" />
                 </form>
