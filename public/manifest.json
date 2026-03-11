@@ -2,7 +2,7 @@
   "name": "Cash Tracker",
   "short_name": "CashTracker",
   "description": "Track Better, Spend Smarter",
-  "start_url": "/",
+  "start_url": "/auth/login",
   "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
