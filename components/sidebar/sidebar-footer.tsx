@@ -36,8 +36,20 @@ export function SidebarFooterContent({
 }) {
     const navigate = useRouter(); // Hook from your routing library
 
-    return (
+    const handleLogout = async () => {
+        const supabase = createClient();
+        const { error } = await supabase.auth.signOut();
 
+        if (error) {
+            console.error("Sign out error:", error);
+            // optional: show UI toast error
+            return;
+        }
+
+        navigate.push("/");
+    };
+
+    return (
         <SidebarFooter>
             <SidebarMenu>
                 <SidebarMenuItem>
@@ -89,11 +101,7 @@ export function SidebarFooterContent({
 
                             </DropdownMenuGroup>
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem onClick={async () => {
-                                const supabase = createClient()
-                                const { error } = await supabase.auth.signOut()
-                                navigate.push("/");
-                            }}>
+                            <DropdownMenuItem onClick={handleLogout}>
                                 <LogOut />
                                 Log out
                             </DropdownMenuItem>
