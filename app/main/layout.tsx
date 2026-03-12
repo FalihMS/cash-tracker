@@ -5,7 +5,6 @@ import { AppSidebar } from "@/components/sidebar/app-sidebar"
 import {
     SidebarInset,
     SidebarProvider,
-    SidebarTrigger,
 } from "@/components/ui/sidebar"
 export default async function MainLayout({
     children,
@@ -48,9 +47,6 @@ function SidebarComponent({
             }>
             <AppSidebar />
             <SidebarInset>
-                <nav className="mt-2 ml-2">
-                    <SidebarTrigger className="md:invisible p-4" />
-                </nav>
                 { children }
             </SidebarInset>
         </SidebarProvider>

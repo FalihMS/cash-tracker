@@ -16,7 +16,7 @@ export default async function DashboardPage(){
 
 
     return(
-            <MainContent>
+            <MainContent title="Dashboard">
                 <BalanceCard balance={balanceData} />
                 <TotalExpenseCard totalExpense={totalExpenseData} />
                 <TransactionHistoryChart data={transactionChartData} />
