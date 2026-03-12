@@ -42,17 +42,16 @@ function SidebarComponent({
         <SidebarProvider
             style={
                 {
-                    "--sidebar-width": "calc(var(--spacing) * 72)",
+                    "--sidebar-width": "calc(var(--spacing) * 66)",
                     "--header-height": "calc(var(--spacing) * 12)",
                 } as React.CSSProperties
             }>
             <AppSidebar />
             <SidebarInset>
-                <nav className="mt-2 ml-2 bg-gray-100">
+                <nav className="mt-2 ml-2">
                     <SidebarTrigger className="md:invisible p-4" />
                 </nav>
                 { children }
-                
             </SidebarInset>
         </SidebarProvider>
     )
