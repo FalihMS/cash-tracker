@@ -53,9 +53,9 @@ export default function NewTransactionForm() {
 
     return (
         <form.AppForm>
-            <div className="w-full mt-2 lg:mt-4 px-4 md:px-8 col-span-2">
+            <div className=" mt-2 lg:mt-4 px-4 md:px-0">
                 <form
-                    className="grid max-w-xl w-full mx-auto"
+                    className="grid max-w-md w-full"
                     id="transaction-form"
                     onSubmit={(e) => {
                         e.preventDefault()

@@ -9,12 +9,19 @@ import {
   SidebarMenuItem,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { BarChart2Icon, ListIcon, LoaderIcon, PiggyBankIcon, TagsIcon, WalletIcon } from "lucide-react"
+import { BarChart2Icon, ListIcon, PiggyBankIcon, PlusCircle, TagsIcon, WalletIcon } from "lucide-react"
 import { SidebarFooterContent } from "./sidebar-footer"
 import SidebarMainContent from "./sidebar-main"
 
 // This is sample data.
 const data = {
+  quick: [
+    {
+      title: "New Transaction",
+      url: "/main/new-transaction",
+      icon: PlusCircle,
+    },
+  ],
   main: [
     {
       title: "Dashboard",
@@ -23,7 +30,7 @@ const data = {
     },
     {
       title: "Transaction",
-      url: "#",
+      url: "/main/transaction",
       icon: ListIcon,
     },
     {
@@ -55,7 +62,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarMainContent data={data.main} />
+      <SidebarMainContent quick={data.quick} main={data.main} />
       <SidebarFooterContent />
     </Sidebar>
   )

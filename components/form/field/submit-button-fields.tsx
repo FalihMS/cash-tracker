@@ -12,7 +12,7 @@ export default function SubmitButtonField({
     return (
         <formContext.Subscribe selector={(s) => s.canSubmit}>
             {(canSubmit) => (
-                <Button type="submit" form={form} disabled={!canSubmit}>
+                <Button className="w-fit" type="submit" form={form} disabled={!canSubmit}>
                    { label }
                 </Button>
             )}

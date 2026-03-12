@@ -10,9 +10,6 @@ import { Card, CardAction, CardContent, CardHeader, CardTitle } from "../ui/card
 import { Button } from "../ui/button"
 import { DevelopmentDialog } from "../dialog/development-dialog"
 import { formatCurrencyDisplay, shorten } from "@/lib/utils"
-import { Eye } from "lucide-react"
-
-import { useIsMobile } from "@/hooks/use-mobile"
 import { TransactionDetailDialog } from "@/features/transaction/components/transaction-detail-dialog"
 
 export function RecentTransactionTable({
@@ -32,9 +29,11 @@ export function RecentTransactionTable({
                 <CardTitle>Recent Transaction</CardTitle>
                 {data.length > 0 && (
                     <CardAction>
-                        <DevelopmentDialog>
-                            <Button variant={"outline"}>View All</Button>
-                        </DevelopmentDialog>
+                        <Button variant={"outline"} asChild>
+                            <a href="/main/transaction">
+                                View All
+                            </a>
+                        </Button>
                     </CardAction>
                 )}
             </CardHeader>
@@ -49,11 +48,6 @@ export function RecentTransactionTable({
                             <TableBody>
                                 {data.map((transaction, id) => (
                                     <TableRow key={id} className="align-middle">
-
-                                        {/* On Going Development (aligned with the category) */}
-                                        {/* <TableCell className="align-middle w-0">
-                                            <ChevronDownCircle />
-                                        </TableCell> */}
 
                                         {/* Category + Note */}
                                         <TableCell className="align-middle">
