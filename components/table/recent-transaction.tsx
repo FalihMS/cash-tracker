@@ -27,7 +27,7 @@ export function RecentTransactionTable({
     }[]
 }) {
     return (
-        <Card className="lg:col-span-2">
+        <Card>
             <CardHeader>
                 <CardTitle>Recent Transaction</CardTitle>
                 {data.length > 0 && (

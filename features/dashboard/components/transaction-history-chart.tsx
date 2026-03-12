@@ -37,7 +37,7 @@ export function TransactionHistoryChart({
   }[]
 }) {
   return (
-    <Card className="lg:col-span-2">
+    <Card className="">
       <CardHeader>
           <CardTitle>Expense History</CardTitle>
       </CardHeader>
