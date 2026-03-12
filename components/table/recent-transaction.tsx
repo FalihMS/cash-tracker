@@ -13,6 +13,7 @@ import { formatCurrencyDisplay, shorten } from "@/lib/utils"
 import { Eye } from "lucide-react"
 
 import { useIsMobile } from "@/hooks/use-mobile"
+import { TransactionDetailDialog } from "@/features/transaction/components/transaction-detail-dialog"
 
 export function RecentTransactionTable({
     data
@@ -25,7 +26,6 @@ export function RecentTransactionTable({
         note: string
     }[]
 }) {
-    const isMobile = useIsMobile()
     return (
         <Card className="lg:col-span-2">
             <CardHeader>
@@ -60,7 +60,10 @@ export function RecentTransactionTable({
                                             <div className="flex flex-col">
                                                 <span>{transaction.category}</span>
                                                 <span className="sm:hidden text-sm font-light text-muted-foreground">
-                                                    { !isMobile ? transaction.note : shorten(transaction.note) }
+                                                    { shorten(transaction.note) }
+                                                </span>
+                                                <span className="hidden sm:block text-sm font-light text-muted-foreground">
+                                                    { transaction.note }
                                                 </span>
                                             </div>
                                         </TableCell>
@@ -86,11 +89,7 @@ export function RecentTransactionTable({
 
                                         {/* Action Button */}
                                         <TableCell className="text-end align-middle w-0">
-                                            <DevelopmentDialog>
-                                                <Button size="icon" variant="outline">
-                                                    <Eye />
-                                                </Button>
-                                            </DevelopmentDialog>
+                                            <TransactionDetailDialog transaction={transaction} />
                                         </TableCell>
 
                                     </TableRow>
