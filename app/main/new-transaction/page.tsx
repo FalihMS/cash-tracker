@@ -5,11 +5,8 @@ import NewTransactionForm from "@/features/transaction/components/new-transactio
 
 export default async function Page() {
     return (
-        <>
-            <Header>Record Transaction</Header>
             <MainContent>
                 <NewTransactionForm />
             </MainContent>
-        </>
     )
 }

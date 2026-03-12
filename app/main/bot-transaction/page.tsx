@@ -6,11 +6,8 @@ export default async function Page() {
 
 
     return (
-        <>
-            <Header>Record Transaction</Header>
             <MainContent>
                 <BotTransactionForm />
             </MainContent>
-        </>
     )
 }

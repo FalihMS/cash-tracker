@@ -16,15 +16,12 @@ export default async function DashboardPage(){
 
 
     return(
-        <>
-            <Header>Dashboard</Header>
             <MainContent>
                 <BalanceCard balance={balanceData} />
                 <TotalExpenseCard totalExpense={totalExpenseData} />
                 <TransactionHistoryChart data={transactionChartData} />
                 <RecentTransactionTable data={recentTransactionData} />
             </MainContent>
-        </>
     )
 }
 

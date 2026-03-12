@@ -16,7 +16,6 @@ export default function SidebarMainContent({
         <SidebarContent>
             <SidebarGroup>
                 <SidebarGroupContent className="flex flex-col gap-2">
-                    <SidebarQuickMenu />
                     <SidebarLinksMenu data={data} />
                 </SidebarGroupContent>
             </SidebarGroup>

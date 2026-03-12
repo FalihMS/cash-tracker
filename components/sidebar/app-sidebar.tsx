@@ -7,8 +7,9 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { BarChart2Icon, ListIcon, PiggyBankIcon, TagsIcon, WalletIcon } from "lucide-react"
+import { BarChart2Icon, ListIcon, LoaderIcon, PiggyBankIcon, TagsIcon, WalletIcon } from "lucide-react"
 import { SidebarFooterContent } from "./sidebar-footer"
 import SidebarMainContent from "./sidebar-main"
 
@@ -40,28 +41,22 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar {...props}>
-      <SidebarHeader className="h-16 flex flex-col justify-center">
+    <Sidebar collapsible={'icon'} {...props}>
+      <SidebarHeader className="flex flex-col justify-center">
         <SidebarMenu>
-          <SidebarMenuItem>
+          <SidebarMenuItem className="w-full flex justify-between">
             <SidebarMenuButton
-              asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
+              className="group-data-[collapsible=icon]:hidden group-data-[collapsible=offcanvas]:hidden"
             >
-              <a href="dashboard">
                 <PiggyBankIcon className="!size-5" />
-                <span className="text-sm text-base font-semibold">Cash Tracker Application</span>
-              </a>
+                <span className="font-medium">Cash Tracker App</span>
             </SidebarMenuButton>
+            <SidebarTrigger className="p-4" />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarMainContent data={data.main} />
-      <SidebarFooterContent user={{
-        name: "User",
-        email: "your-email@gmail.com",
-        avatar: ""
-      }} />
+      <SidebarFooterContent />
     </Sidebar>
   )
 }

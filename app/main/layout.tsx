@@ -5,11 +5,8 @@ import { AppSidebar } from "@/components/sidebar/app-sidebar"
 import {
     SidebarInset,
     SidebarProvider,
+    SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { Suspense } from "react";
-import { Card } from "@/components/ui/card";
-import { Loader2 } from "lucide-react";
-
 export default async function MainLayout({
     children,
 }: Readonly<{
@@ -51,21 +48,12 @@ function SidebarComponent({
             }>
             <AppSidebar />
             <SidebarInset>
-                <Suspense fallback={<LoadingDashboard />}>
-                    {children}
-                </Suspense>
+                <nav className="mt-2 ml-2 bg-gray-100">
+                    <SidebarTrigger className="md:invisible p-4" />
+                </nav>
+                { children }
+                
             </SidebarInset>
         </SidebarProvider>
-    )
-}
-
-function LoadingDashboard(){
-    return(
-        <div className="px-4 md:mx-0 w-full h-full flex items-center justify-center">
-            <Card className="w-[400px] text-center flex flex-col justify-center items-center text-muted-foreground">
-                <Loader2 className="animate-spin" />
-                <span>Loading...</span>
-            </Card>
-        </div>
     )
 }
