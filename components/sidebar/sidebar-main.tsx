@@ -1,4 +1,4 @@
-import { CirclePlusIcon, BotIcon, LucideProps } from "lucide-react";
+import { CirclePlusIcon, BotIcon, LucideProps, PlusCircle } from "lucide-react";
 import { SidebarContent, SidebarGroup, SidebarGroupContent, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "../ui/sidebar";
 import { Button } from "../ui/button";
 import { ForwardRefExoticComponent } from "react";
@@ -14,8 +14,17 @@ export default function SidebarMainContent({
 }) {
     return (
         <SidebarContent>
+            
             <SidebarGroup>
                 <SidebarGroupContent className="flex flex-col gap-2">
+                    <SidebarMenuItem className="my-1">
+                    <SidebarMenuButton className="bg-foreground text-background hover:bg-muted-foreground hover:text-muted-background" asChild>
+                        <a href="/main/new-transaction">
+                           <PlusCircle />
+                            <span>New Transaction</span>
+                        </a>
+                    </SidebarMenuButton>
+                </SidebarMenuItem>
                     <SidebarLinksMenu data={data} />
                 </SidebarGroupContent>
             </SidebarGroup>
@@ -24,33 +33,6 @@ export default function SidebarMainContent({
     )
 }
 
-function SidebarQuickMenu() {
-    return (
-        <SidebarMenu>
-            <SidebarMenuItem className="grid grid-cols-3 gap-2">
-                <Button
-                    asChild
-                    className="col-span-2"
-                >
-                    <a href="new-transaction">
-                        <CirclePlusIcon className="ml-0.5" />
-                        <span>New Transaction</span>
-                    </a>
-                </Button>
-                    <Button
-                        asChild
-                        variant="outline"
-                    >
-                        <a href="bot-transaction">
-
-                            <BotIcon />
-                            <span>Bot</span>
-                        </a>
-                    </Button>
-            </SidebarMenuItem>
-        </SidebarMenu>
-    )
-}
 
 function SidebarLinksMenu({
     data,
